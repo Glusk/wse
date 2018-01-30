@@ -6,13 +6,13 @@ package com.github.glusk2.wse.common.crypto.util.hashing;
  */
 public interface ImmutableMessageDigest {
     byte[] digest();
-    
+
     ImmutableMessageDigest update(byte[] arr, int offset, int len);
-    
+
     default ImmutableMessageDigest update(byte[] arr) {
         return update(arr, 0, arr.length);
     }
-    
+
     default ImmutableMessageDigest update(DigestArgument... args) {
         ImmutableMessageDigest imd = this;
         for (DigestArgument arg : args) {

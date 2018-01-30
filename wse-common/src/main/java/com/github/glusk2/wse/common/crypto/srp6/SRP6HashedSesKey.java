@@ -4,20 +4,20 @@ import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 
 public final class SRP6HashedSesKey implements DigestArgument {
-    
+
     private final ImmutableMessageDigest imd;
     private final SRP6Integer S;
-    
+
     private DigestArgument K;
-    
+
     public SRP6HashedSesKey(
         ImmutableMessageDigest imd,
         SRP6Integer S
     ) {
         this.imd = imd;
-        this.S = S;        
+        this.S = S;
     }
-    
+
     /**
      * This method implements the SHA_Interleave hash function as described in
      * <a href="http://tools.ietf.org/rfc/rfc2945.txt">RFC2945</a>
@@ -27,7 +27,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
         byte[] t = S.bytes();
         int off = t.length % 2;
         int halfSize = (t.length - off) / 2;
-        
+
         byte[] e = new byte[halfSize];
         byte[] o = new byte[halfSize];
         for (int i = off; i < halfSize; i++) {
@@ -36,8 +36,8 @@ public final class SRP6HashedSesKey implements DigestArgument {
         }
         e = imd.update(e).digest();
         o = imd.update(o).digest();
-        
-        byte[] res = new byte[e.length + o.length];        
+
+        byte[] res = new byte[e.length + o.length];
         for (int i = 0; i < res.length / 2; i++) {
             res[2 * i    ] = e[i];
             res[2 * i + 1] = o[i];

@@ -12,9 +12,9 @@ import com.github.glusk2.wse.common.crypto.util.hashing.XoredArgumentPair;
 public final class SRP6CltSesProof implements DigestArgument {
 
     private final IntermediateDigest proof;
-    
-    private byte[] M1;    
-    
+
+    private byte[] M1;
+
     public SRP6CltSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer N,
@@ -27,7 +27,7 @@ public final class SRP6CltSesProof implements DigestArgument {
     ) {
         this(imd, N, g, I, StandardCharsets.UTF_8, s, A, B, K);
     }
-    
+
     public SRP6CltSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer N,
@@ -60,11 +60,11 @@ public final class SRP6CltSesProof implements DigestArgument {
             )
         );
     }
-    
+
     public SRP6CltSesProof(IntermediateDigest proof) {
         this.proof = proof;
     }
-    
+
     @Override
     public byte[] bytes() {
         if (M1 == null) {

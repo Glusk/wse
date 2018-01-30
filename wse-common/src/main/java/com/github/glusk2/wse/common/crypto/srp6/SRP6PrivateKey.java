@@ -11,23 +11,24 @@ import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
 import com.github.glusk2.wse.common.util.Mapping;
 
 public final class SRP6PrivateKey implements SRP6Integer {
+
     private final ImmutableMessageDigest imd;
-    private Mapping<byte[], SRP6Integer> rule;
-    private final DigestArgument p;
     private final SRP6Integer s;
-    
+    private final DigestArgument p;
+    private final Mapping<byte[], SRP6Integer> rule;
+
     private SRP6Integer x;
-    
+
     public SRP6PrivateKey(
         ImmutableMessageDigest imd,
         SRP6Integer s,
         String I,
-        String P,        
+        String P,
         Mapping<byte[], SRP6Integer> rule
     ) {
         this(imd, s, I, P, StandardCharsets.UTF_8, rule);
     }
-    
+
     public SRP6PrivateKey(
         ImmutableMessageDigest imd,
         SRP6Integer s,
@@ -42,11 +43,11 @@ public final class SRP6PrivateKey implements SRP6Integer {
             new IntermediateDigest(
                 imd,
                 new StringArgument(I + ":" + P, charset)
-            ),            
+            ),
             rule
         );
     }
-    
+
     public SRP6PrivateKey(
         ImmutableMessageDigest imd,
         SRP6Integer s,
@@ -56,14 +57,14 @@ public final class SRP6PrivateKey implements SRP6Integer {
         this.imd = imd;
         this.rule = rule;
         this.p = p;
-        this.s = s;        
+        this.s = s;
     }
 
     private SRP6Integer compute_x() {
         // H(salt | H(username | ":" | password)) = H(salt | p)
         return rule.map(imd.update(s, p).digest());
     }
-    
+
     @Override
     public byte[] bytes() {
         if (x == null) {

@@ -5,14 +5,14 @@ import java.math.BigInteger;
 import com.github.glusk2.wse.common.util.Mapping;
 
 public final class SRP6Verifier implements SRP6Integer {
-    
+
     private final SRP6Integer srp6_N;
     private final SRP6Integer srp6_g;
     private final SRP6Integer srp6_x;
     private final Mapping<BigInteger, SRP6Integer> rule;
-    
+
     private SRP6Integer v;
-    
+
     public SRP6Verifier(
         SRP6Integer N,
         SRP6Integer g,
@@ -29,7 +29,7 @@ public final class SRP6Verifier implements SRP6Integer {
         BigInteger N = srp6_N.bigInteger();
         BigInteger g = srp6_g.bigInteger();
         BigInteger x = srp6_x.bigInteger();
-        
+
         // v = g^x
         return rule.map(g.modPow(x, N));
     }

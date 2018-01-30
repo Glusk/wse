@@ -19,7 +19,7 @@ public final class Bba implements ByteArray {
             )
         );
     }
-    
+
     public Bba(BigInteger bi) {
         this(
             new NoLeadingZeroes(

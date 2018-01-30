@@ -11,12 +11,12 @@ public final class StringArgument implements DigestArgument {
     public StringArgument(String string) {
         this(string, StandardCharsets.UTF_8);
     }
-    
+
     public StringArgument(String string, Charset charset) {
         this.string = string;
         this.charset = charset;
     }
-    
+
     @Override
     public byte[] bytes() {
         return string.getBytes(charset);

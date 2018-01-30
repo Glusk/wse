@@ -7,14 +7,14 @@ import java.math.BigInteger;
  * object.
  */
 public final class Lba implements ByteArray {
-    
+
     private final ByteArray ba;
 
     /**
      * @param  bi
      *         {@link BigInteger} object from which {@code this} little-endian
      *         byte array is to be constructed.
-     * @param  size  
+     * @param  size
      *         Required {@link #array()} length. {@link #array()} is padded
      *         with {@code size - (bi.toByteArray().length - #leading_zeroes)}
      *         0 bytes. {@code #leading_zeroes} is the number of leading zeroes
@@ -32,7 +32,7 @@ public final class Lba implements ByteArray {
             )
         );
     }
-    
+
     /**
      * @param  bi
      *         {@link BigInteger} object from which {@code this} little-endian
@@ -47,12 +47,12 @@ public final class Lba implements ByteArray {
             )
         );
     }
-    
+
     private Lba(ByteArray ba) {
         this.ba = ba;
     }
 
-    /** 
+    /**
      * Little-endian byte array representation of the {@link BigInteger} object
      * passed through the constructor.
      */

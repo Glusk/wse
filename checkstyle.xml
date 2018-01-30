@@ -43,7 +43,7 @@
 
     <!-- Checks that a package-info.java file exists for each package.     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
-    <module name="JavadocPackage"/>
+<!--     <module name="JavadocPackage"/> -->
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
@@ -81,22 +81,22 @@
 
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
-        <module name="JavadocMethod"/>
-        <module name="JavadocType"/>
-        <module name="JavadocVariable"/>
+<!--         <module name="JavadocMethod"/> -->
+<!--         <module name="JavadocType"/> -->
+<!--         <module name="JavadocVariable"/> -->
         <module name="JavadocStyle"/>
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
-        <module name="ConstantName"/>
-        <module name="LocalFinalVariableName"/>
-        <module name="LocalVariableName"/>
-        <module name="MemberName"/>
-        <module name="MethodName"/>
-        <module name="PackageName"/>
-        <module name="ParameterName"/>
-        <module name="StaticVariableName"/>
-        <module name="TypeName"/>
+<!--         <module name="ConstantName"/> -->
+<!--         <module name="LocalFinalVariableName"/> -->
+<!--         <module name="LocalVariableName"/> -->
+<!--         <module name="MemberName"/> -->
+<!--         <module name="MethodName"/> -->
+<!--         <module name="PackageName"/> -->
+<!--         <module name="ParameterName"/> -->
+<!--         <module name="StaticVariableName"/> -->
+<!--         <module name="TypeName"/> -->
 
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
@@ -111,7 +111,7 @@
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <module name="LineLength"/>
         <module name="MethodLength"/>
-        <module name="ParameterNumber"/>
+<!--         <module name="ParameterNumber"/> -->
 
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
@@ -120,7 +120,9 @@
         <module name="MethodParamPad"/>
         <module name="NoWhitespaceAfter"/>
         <module name="NoWhitespaceBefore"/>
-        <module name="OperatorWrap"/>
+        <module name="OperatorWrap">
+            <property name="option" value="eol"/>
+        </module>
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter"/>
@@ -141,10 +143,10 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="AvoidInlineConditionals"/>
+<!--         <module name="AvoidInlineConditionals"/> -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+<!--         <module name="HiddenField"/> -->
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
@@ -163,7 +165,9 @@
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle"/>
-        <module name="FinalParameters"/>
+        <module name="FinalParameters">
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
         <module name="TodoComment"/>
         <module name="UpperEll"/>
 

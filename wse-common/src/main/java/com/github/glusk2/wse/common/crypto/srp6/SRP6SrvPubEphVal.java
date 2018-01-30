@@ -21,7 +21,7 @@ public final class SRP6SrvPubEphVal implements SRP6Integer {
         SRP6Integer N,
         SRP6Integer g,
         SRP6Integer v,
-        SRP6Integer b,        
+        SRP6Integer b,
         Mapping<BigInteger, SRP6Integer> rule
     ) {
         this(
@@ -37,7 +37,7 @@ public final class SRP6SrvPubEphVal implements SRP6Integer {
     }
 
     public SRP6SrvPubEphVal(
-        SRP6Integer N, 
+        SRP6Integer N,
         SRP6Integer g,
         SRP6Integer k,
         SRP6Integer v,
@@ -48,7 +48,7 @@ public final class SRP6SrvPubEphVal implements SRP6Integer {
         this.srp6_g = g;
         this.srp6_k = k;
         this.srp6_v = v;
-        this.srp6_b = b;        
+        this.srp6_b = b;
         this.rule = rule;
     }
 

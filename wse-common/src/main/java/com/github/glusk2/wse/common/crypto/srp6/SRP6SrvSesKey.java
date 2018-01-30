@@ -11,9 +11,9 @@ public final class SRP6SrvSesKey implements SRP6Integer {
     private final SRP6Integer srp6_b;
     private final SRP6Integer srp6_u;
     private final Mapping<BigInteger, SRP6Integer> rule;
-    
+
     private SRP6Integer S;
-    
+
     public SRP6SrvSesKey(
         SRP6Integer N,
         SRP6Integer A,
@@ -36,7 +36,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
         BigInteger v = srp6_v.bigInteger();
         BigInteger b = srp6_b.bigInteger();
         BigInteger u = srp6_u.bigInteger();
-        
+
         // S = (A*v^u)^b
         return rule.map(A.multiply(v.modPow(u, N)).modPow(b, N));
     }
