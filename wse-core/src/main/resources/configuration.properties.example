@@ -1,0 +1,7 @@
+####
+# Database connection configuration
+####
+jdbcUrl=jdbc:mysql://localhost:3306/LogonDatabase
+dataSource.user=test
+dataSource.password=test
+dataSource.cachePrepStmts=true
