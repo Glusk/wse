@@ -17,7 +17,7 @@ mvn clean install
 mysql -u your_database_username -p < wse-core/sql/initial_database_create_script.sql
 java -DconfigFilePath="path_to_your_configuration.properties_file*" -classpath wse-core/target/wse-core-0.0.1-jar-with-dependencies.jar com.github.glusk2.wse.core.logon.LogonServer
 ```
-<sub>* Check out [configuration.properties.example](wse/wse-core/src/main/resources/configuration.properties.example) for reference.</sub>
+<sub>* Check out [configuration.properties.example](/wse-core/src/main/resources/configuration.properties.example) for reference.</sub>
 
 ---
 
