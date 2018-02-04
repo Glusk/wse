@@ -119,7 +119,7 @@
                 <artifactId>gemnasium-maven-plugin</artifactId>
                 <version>0.3.0</version>
                 <configuration>
-                    <projectSlug>Glusk2/wse</projectSlug>
+                    <projectSlug>github.com/Glusk2/wse</projectSlug>
                 </configuration>
             </plugin>
         </plugins>
