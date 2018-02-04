@@ -1,5 +1,7 @@
 language: java
-script: mvn clean install
+script:
+  - mvn gemnasium:send-dependencies
+  - mvn clean install
 after_success:
   - mvn clean test jacoco:report coveralls:report
 secure: "ZXq5PVhDvVcyRpecMAH4cX5U6+RJsu7N1W7Kn4FI1+eEFjMjc8W0Nhg7yes1VxoHUkHBYMmhm8seVFPG5s6nw12mE7daZJ1K44S+dLc5VaaB+BJyzgsGEhshP2nJVsgSClaSPXx1F2Np7rtWj4K5hoQdZe/mESzBcJwUirD8D9MlVlsTnl8VoRFIkazD0cp+n/WMVX6xsYPhrhs9EQFLQlX/GlVxXckhfieTTAA5ViIlCK0Ge3D1bD6mY/3EsPc+4r+YI0ykQyrjEEE/uDmOTcx1V8EwmHp39BI651/FgVyEB9lUlY0ejLsKFClZ3xmRzNED/HGYiRbuEaFU8XqhV+hxS5mIOoGq977jVOIo111wD2dT/Y/YPIqEK+WxXK8XN5ppeVGTBZVdrND4WpPrz4PDm3paHF4MDvpeqHACRMcXbxAKgPWVIx18jy/rSfPtO8UjACCLnwEnEgYmVv0r0DQJYwGlBofK37yO2ZfOt9lzliNVzv+9oFlpDTf40gq89upu/mASNcJVPp0kzUCSD6YVE4VYrs+BXl9+3qRwPEpFXSeCx4BHukDme+QDQRovl7gIU1VxfCWGueZMxrTdJKzZD95pVYOqqhQXATKOyKxq1EbmGI2UhINDR+zSOO17jxUks3DadZ1d5OHTG+SOF9c07Mkl8BOMOWmFH6mZnGg="
