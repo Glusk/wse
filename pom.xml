@@ -114,14 +114,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.gemnasium</groupId>
-                <artifactId>gemnasium-maven-plugin</artifactId>
-                <version>0.3.0</version>
-                <configuration>
-                    <projectSlug>github.com/Glusk2/wse</projectSlug>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
