@@ -1,7 +1,5 @@
 language: java
-script:
-  - mvn gemnasium:send-dependencies
-  - mvn clean install
+script: mvn clean install
 after_success:
   - mvn clean test jacoco:report coveralls:report
 env:
