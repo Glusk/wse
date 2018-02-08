@@ -46,6 +46,7 @@ public final class ReferenceARP implements AuthReconnectProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public DigestArgument clientSalt() throws IOException {
         byte[] R1 = new byte[SALT_LENGTH];
         ByteBuffer buf =
@@ -55,6 +56,7 @@ public final class ReferenceARP implements AuthReconnectProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public DigestArgument reconnectProof() throws IOException {
         byte[] R2 = new byte[SHA1_LENGTH];
         ByteBuffer buf = (ByteBuffer) clientReconnectProof

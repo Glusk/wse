@@ -30,6 +30,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
         this.rule = rule;
     }
 
+    @SuppressWarnings("checkstyle:localvariablename")
     private SRP6Integer compute_S() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger A = srp6_A.bigInteger();

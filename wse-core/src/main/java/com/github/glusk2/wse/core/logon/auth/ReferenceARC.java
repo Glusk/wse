@@ -45,6 +45,7 @@ public final class ReferenceARC implements AuthReconnectChallenge {
 
     /** {@inheritDoc} */
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public String identity() throws IOException {
         ByteBuffer buf = (ByteBuffer) clientChallenge
             .buffer()

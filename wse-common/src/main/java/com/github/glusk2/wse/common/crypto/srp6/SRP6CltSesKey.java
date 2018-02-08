@@ -59,6 +59,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
         this.rule = rule;
     }
 
+    @SuppressWarnings("checkstyle:localvariablename")
     private SRP6Integer compute_S() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger g = srp6_g.bigInteger();

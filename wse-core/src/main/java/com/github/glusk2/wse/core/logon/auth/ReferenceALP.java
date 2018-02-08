@@ -70,6 +70,7 @@ public final class ReferenceALP implements AuthLogonProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public SRP6Integer cltPubEphVal() throws IOException {
         byte[] A = new byte[INT_PAD_LENGTH];
         ByteBuffer buf = (ByteBuffer) clientProof.buffer().position(1);
@@ -78,6 +79,7 @@ public final class ReferenceALP implements AuthLogonProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public DigestArgument cltSesProof() throws IOException {
         byte[] M1 = new byte[SHA1_LENGTH];
         ByteBuffer buf =
@@ -102,6 +104,7 @@ public final class ReferenceALP implements AuthLogonProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public boolean isClientProofValid() throws SQLException, IOException {
         BigInteger N = challenge.record().modulus().bigInteger();
         BigInteger A = cltPubEphVal().bigInteger();

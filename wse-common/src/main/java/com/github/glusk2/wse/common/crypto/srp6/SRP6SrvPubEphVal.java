@@ -52,6 +52,7 @@ public final class SRP6SrvPubEphVal implements SRP6Integer {
         this.rule = rule;
     }
 
+    @SuppressWarnings("checkstyle:localvariablename")
     private SRP6Integer computeB() {
         BigInteger k = srp6_k.bigInteger();
         BigInteger b = srp6_b.bigInteger();
