@@ -32,7 +32,13 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
         private static final long serialVersionUID = 1L;
 
         BigIntExt(ByteArray ba, ByteOrder bo) {
-            this(bo == ByteOrder.LITTLE_ENDIAN ? new Reversed(ba) : ba);
+            this(
+                new ByteArray.FILTERED_BY_ORDER(
+                    bo,
+                    new Reversed(ba),
+                    ba
+                )
+            );
         }
 
         BigIntExt(ByteArray ba) {
@@ -45,7 +51,14 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     }
 
     public SRP6PrecomputedValue(BigInteger bi, ByteOrder bo) {
-        this(bi, bo == ByteOrder.LITTLE_ENDIAN ? new Lba(bi) : new Bba(bi));
+        this(
+            bi,
+            new ByteArray.FILTERED_BY_ORDER(
+                bo,
+                new Lba(bi),
+                new Bba(bi)
+            )
+        );
     }
 
     public SRP6PrecomputedValue(BigInteger bi, int size) {
@@ -55,8 +68,11 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     public SRP6PrecomputedValue(BigInteger bi, int size, ByteOrder bo) {
         this(
             bi,
-            bo == ByteOrder.LITTLE_ENDIAN ?
-            new Lba(bi, size) : new Bba(bi, size)
+            new ByteArray.FILTERED_BY_ORDER(
+                bo,
+                new Lba(bi, size),
+                new Bba(bi, size)
+            )
         );
     }
 
@@ -76,15 +92,17 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     public SRP6PrecomputedValue(ByteArray arr, int size, ByteOrder bo) {
         this(
             new BigIntExt(arr, bo),
-            bo == ByteOrder.LITTLE_ENDIAN ?
-            new ZeroPadded(
-                arr,
-                size
-            ) :
-            new Reversed(
+            new ByteArray.FILTERED_BY_ORDER(
+                bo,
                 new ZeroPadded(
-                    new Reversed(arr),
+                    arr,
                     size
+                ),
+                new Reversed(
+                    new ZeroPadded(
+                        new Reversed(arr),
+                        size
+                    )
                 )
             )
         );
