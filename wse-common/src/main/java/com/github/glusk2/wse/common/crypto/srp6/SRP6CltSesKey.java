@@ -38,6 +38,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
         );
     }
 
+    @SuppressWarnings("checkstyle:parameternumber")
     public SRP6CltSesKey(
         SRP6Integer N,
         SRP6Integer g,

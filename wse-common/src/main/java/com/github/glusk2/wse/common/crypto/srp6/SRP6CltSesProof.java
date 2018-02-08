@@ -15,6 +15,7 @@ public final class SRP6CltSesProof implements DigestArgument {
 
     private byte[] M1;
 
+    @SuppressWarnings("checkstyle:parameternumber")
     public SRP6CltSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer N,
@@ -28,6 +29,7 @@ public final class SRP6CltSesProof implements DigestArgument {
         this(imd, N, g, I, StandardCharsets.UTF_8, s, A, B, K);
     }
 
+    @SuppressWarnings("checkstyle:parameternumber")
     public SRP6CltSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer N,
