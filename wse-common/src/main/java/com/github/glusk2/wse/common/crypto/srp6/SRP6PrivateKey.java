@@ -60,7 +60,7 @@ public final class SRP6PrivateKey implements SRP6Integer {
         this.s = s;
     }
 
-    private SRP6Integer compute_x() {
+    private SRP6Integer computeInteger() {
         // H(salt | H(username | ":" | password)) = H(salt | p)
         return rule.map(imd.update(s, p).digest());
     }
@@ -68,7 +68,7 @@ public final class SRP6PrivateKey implements SRP6Integer {
     @Override
     public byte[] bytes() {
         if (x == null) {
-            x = compute_x();
+            x = computeInteger();
         }
         return x.bytes();
     }
@@ -76,7 +76,7 @@ public final class SRP6PrivateKey implements SRP6Integer {
     @Override
     public BigInteger bigInteger() {
         if (x == null) {
-            x = compute_x();
+            x = computeInteger();
         }
         return x.bigInteger();
     }

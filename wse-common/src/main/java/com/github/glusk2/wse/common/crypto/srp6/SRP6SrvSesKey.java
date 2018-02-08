@@ -31,7 +31,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
     }
 
     @SuppressWarnings("checkstyle:localvariablename")
-    private SRP6Integer compute_S() {
+    private SRP6Integer computeInteger() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger A = srp6_A.bigInteger();
         BigInteger v = srp6_v.bigInteger();
@@ -45,7 +45,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
     @Override
     public byte[] bytes() {
         if (S == null) {
-            S = compute_S();
+            S = computeInteger();
         }
         return S.bytes();
     }
@@ -53,7 +53,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
     @Override
     public BigInteger bigInteger() {
         if (S == null) {
-            S = compute_S();
+            S = computeInteger();
         }
         return S.bigInteger();
     }

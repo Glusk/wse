@@ -26,7 +26,7 @@ public final class SRP6Verifier implements SRP6Integer {
     }
 
     @SuppressWarnings("checkstyle:localvariablename")
-    private SRP6Integer compute_v() {
+    private SRP6Integer computeInteger() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger g = srp6_g.bigInteger();
         BigInteger x = srp6_x.bigInteger();
@@ -38,7 +38,7 @@ public final class SRP6Verifier implements SRP6Integer {
     @Override
     public byte[] bytes() {
         if (v == null) {
-            v = compute_v();
+            v = computeInteger();
         }
         return v.bytes();
     }
@@ -46,7 +46,7 @@ public final class SRP6Verifier implements SRP6Integer {
     @Override
     public BigInteger bigInteger() {
         if (v == null) {
-            v = compute_v();
+            v = computeInteger();
         }
         return v.bigInteger();
     }

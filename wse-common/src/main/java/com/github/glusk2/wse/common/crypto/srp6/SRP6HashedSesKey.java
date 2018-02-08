@@ -23,7 +23,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
      * <a href="http://tools.ietf.org/rfc/rfc2945.txt">RFC2945</a>
      * (section 3.1. Interleaved SHA).
      */
-    private DigestArgument compute_K() {
+    private DigestArgument computeKey() {
         byte[] t = S.bytes();
         int off = t.length % 2;
         int halfSize = (t.length - off) / 2;
@@ -48,7 +48,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
     @Override
     public byte[] bytes() {
         if (K == null) {
-            K = compute_K();
+            K = computeKey();
         }
         return K.bytes();
     }

@@ -26,7 +26,7 @@ public final class SRP6ScrPar implements SRP6Integer {
         this.rule = rule;
     }
 
-    private SRP6Integer compute_u() {
+    private SRP6Integer computeInteger() {
         // u = H(A, B)
         return rule.map(imd.update(A, B).digest());
     }
@@ -34,7 +34,7 @@ public final class SRP6ScrPar implements SRP6Integer {
     @Override
     public byte[] bytes() {
         if (u == null) {
-            u = compute_u();
+            u = computeInteger();
         }
         return u.bytes();
     }
@@ -42,7 +42,7 @@ public final class SRP6ScrPar implements SRP6Integer {
     @Override
     public BigInteger bigInteger() {
         if (u == null) {
-            u = compute_u();
+            u = computeInteger();
         }
         return u.bigInteger();
     }
