@@ -8,17 +8,16 @@ import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 
 public final class RFC5054TestVector_g implements SRP6Integer {
 
-    @SuppressWarnings("checkstyle:constantname")
-    private static final SRP6Integer g =
+    private static final SRP6Integer VALUE =
         new SRP6PrecomputedValue(new BigInteger("2"), ByteOrder.BIG_ENDIAN);
 
     @Override
     public byte[] bytes() {
-        return g.bytes();
+        return VALUE.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        return g.bigInteger();
+        return VALUE.bigInteger();
     }
 }

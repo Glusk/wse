@@ -8,8 +8,7 @@ import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 
 public final class RFC5054TestVector_x implements SRP6Integer {
 
-    @SuppressWarnings("checkstyle:constantname")
-    private static final SRP6Integer x =
+    private static final SRP6Integer VALUE =
         new SRP6PrecomputedValue(
             new BigInteger(
                 "94B7555A ABE9127C C58CCF49 93DB6CF8 4D16C124"
@@ -21,11 +20,11 @@ public final class RFC5054TestVector_x implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        return x.bytes();
+        return VALUE.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        return x.bigInteger();
+        return VALUE.bigInteger();
     }
 }
