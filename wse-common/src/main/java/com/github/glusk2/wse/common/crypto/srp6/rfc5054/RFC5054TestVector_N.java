@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6PrecomputedValue;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 
+@SuppressWarnings("checkstyle:typename")
 public final class RFC5054TestVector_N implements SRP6Integer {
 
     private static final SRP6Integer VALUE =

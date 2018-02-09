@@ -20,28 +20,39 @@ public interface ByteArray {
         }
     }
 
-    final class FILTERED_BY_ORDER implements ByteArray {
+    final class BRANCH implements ByteArray {
 
-        private final ByteOrder filter;
-        private final ByteArray littleEndianArray;
-        private final ByteArray bigEndianArray;
+        private final ByteOrder refOrder;
+        private final ByteOrder order;
+        private final ByteArray reference;
+        private final ByteArray alternative;
 
-        public FILTERED_BY_ORDER(
-            ByteOrder filter,
-            ByteArray littleEndianArray,
-            ByteArray bigEndianArray
+        public BRANCH(
+            ByteOrder order,
+            ByteArray reference,
+            ByteArray alternative
         ) {
-            this.filter = filter;
-            this.littleEndianArray = littleEndianArray;
-            this.bigEndianArray = bigEndianArray;
+            this(ByteOrder.LITTLE_ENDIAN, order, reference, alternative);
+        }
+
+        public BRANCH(
+            ByteOrder refOrder,
+            ByteOrder order,
+            ByteArray reference,
+            ByteArray alternative
+        ) {
+            this.refOrder = refOrder;
+            this.order = order;
+            this.reference = reference;
+            this.alternative = alternative;
         }
 
         @Override
         public byte[] array() {
-            if (filter == ByteOrder.LITTLE_ENDIAN) {
-                return littleEndianArray.array();
+            if (order == refOrder) {
+                return reference.array();
             }
-            return bigEndianArray.array();
+            return alternative.array();
         }
     }
 }

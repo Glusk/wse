@@ -33,10 +33,11 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
 
         BigIntExt(ByteArray ba, ByteOrder bo) {
             this(
-                new ByteArray.FILTERED_BY_ORDER(
+                new ByteArray.BRANCH(
+                    ByteOrder.BIG_ENDIAN,
                     bo,
-                    new Reversed(ba),
-                    ba
+                    ba,
+                    new Reversed(ba)
                 )
             );
         }
@@ -53,7 +54,7 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     public SRP6PrecomputedValue(BigInteger bi, ByteOrder bo) {
         this(
             bi,
-            new ByteArray.FILTERED_BY_ORDER(
+            new ByteArray.BRANCH(
                 bo,
                 new Lba(bi),
                 new Bba(bi)
@@ -68,7 +69,7 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     public SRP6PrecomputedValue(BigInteger bi, int size, ByteOrder bo) {
         this(
             bi,
-            new ByteArray.FILTERED_BY_ORDER(
+            new ByteArray.BRANCH(
                 bo,
                 new Lba(bi, size),
                 new Bba(bi, size)
@@ -92,7 +93,7 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     public SRP6PrecomputedValue(ByteArray arr, int size, ByteOrder bo) {
         this(
             new BigIntExt(arr, bo),
-            new ByteArray.FILTERED_BY_ORDER(
+            new ByteArray.BRANCH(
                 bo,
                 new ZeroPadded(
                     arr,

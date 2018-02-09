@@ -29,7 +29,7 @@ public final class ReferenceARC implements AuthReconnectChallenge {
     public ReferenceARC(IncomingPacket clientChallenge) {
         this(
             clientChallenge,
-            new DigestArgument.RAW_BYTES(
+            new DigestArgument.BYTES(
                 new SecureRandom().generateSeed(SALT_LENGTH)
             )
         );

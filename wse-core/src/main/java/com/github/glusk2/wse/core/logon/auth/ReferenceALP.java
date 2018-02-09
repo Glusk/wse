@@ -85,7 +85,7 @@ public final class ReferenceALP implements AuthLogonProof {
         ByteBuffer buf =
             (ByteBuffer) clientProof.buffer().position(1 + INT_PAD_LENGTH);
         buf.get(M1);
-        return new DigestArgument.RAW_BYTES(M1);
+        return new DigestArgument.BYTES(M1);
     }
 
     @Override

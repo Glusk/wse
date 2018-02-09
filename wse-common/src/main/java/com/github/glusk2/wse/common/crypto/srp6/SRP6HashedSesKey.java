@@ -42,7 +42,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
             res[2 * i    ] = e[i];
             res[2 * i + 1] = o[i];
         }
-        return new DigestArgument.RAW_BYTES(res);
+        return new DigestArgument.BYTES(res);
     }
 
     @Override

@@ -52,7 +52,7 @@ public final class ReferenceARP implements AuthReconnectProof {
         ByteBuffer buf =
             (ByteBuffer) clientReconnectProof.buffer().position(1);
         buf.get(R1);
-        return new DigestArgument.RAW_BYTES(R1);
+        return new DigestArgument.BYTES(R1);
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class ReferenceARP implements AuthReconnectProof {
             .buffer()
             .position(1 + SALT_LENGTH);
         buf.get(R2);
-        return new DigestArgument.RAW_BYTES(R2);
+        return new DigestArgument.BYTES(R2);
     }
 
     @Override
@@ -82,7 +82,7 @@ public final class ReferenceARP implements AuthReconnectProof {
     @Override
     public DigestArgument sessionKey() throws SQLException, IOException {
         return
-            new DigestArgument.RAW_BYTES(
+            new DigestArgument.BYTES(
                 sessions.map(
                     challenge.identity()
                 ).key()
