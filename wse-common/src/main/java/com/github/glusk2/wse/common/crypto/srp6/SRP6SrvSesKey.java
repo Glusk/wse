@@ -17,6 +17,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
 
     private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6SrvSesKey(
         SRP6Integer N,
         SRP6Integer A,

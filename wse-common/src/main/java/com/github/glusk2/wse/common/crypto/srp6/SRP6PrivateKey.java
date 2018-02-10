@@ -11,6 +11,7 @@ import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
 import com.github.glusk2.wse.common.util.Mapping;
 
 /** SRP-6 Private Key - x. */
+@SuppressWarnings("checkstyle:parametername")
 public final class SRP6PrivateKey implements SRP6Integer {
 
     private final ImmutableMessageDigest imd;

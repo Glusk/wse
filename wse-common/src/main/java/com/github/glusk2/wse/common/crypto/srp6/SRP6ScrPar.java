@@ -14,6 +14,7 @@ public final class SRP6ScrPar implements SRP6Integer {
 
     private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6ScrPar(
         ImmutableMessageDigest imd,
         SRP6Integer A,

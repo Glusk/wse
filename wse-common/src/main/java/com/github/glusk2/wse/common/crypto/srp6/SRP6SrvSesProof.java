@@ -11,6 +11,7 @@ public final class SRP6SrvSesProof implements DigestArgument {
 
     private byte[] cachedProofBytes;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6SrvSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer A,

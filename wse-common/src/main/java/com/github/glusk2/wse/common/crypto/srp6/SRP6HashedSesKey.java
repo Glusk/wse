@@ -12,6 +12,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
 
     private DigestArgument cachedKey;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6HashedSesKey(
         ImmutableMessageDigest imd,
         SRP6Integer S

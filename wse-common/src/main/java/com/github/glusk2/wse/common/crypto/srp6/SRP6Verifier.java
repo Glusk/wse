@@ -15,6 +15,7 @@ public final class SRP6Verifier implements SRP6Integer {
 
     private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6Verifier(
         SRP6Integer N,
         SRP6Integer g,

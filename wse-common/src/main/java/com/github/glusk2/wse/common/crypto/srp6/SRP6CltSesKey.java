@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import com.github.glusk2.wse.common.util.Mapping;
 
 /** SRP-6 Client Session Key - S. */
-@SuppressWarnings("checkstyle:membername")
+@SuppressWarnings({"checkstyle:membername", "checkstyle:parametername"})
 public final class SRP6CltSesKey implements SRP6Integer {
 
     private final SRP6Integer srp6_N;

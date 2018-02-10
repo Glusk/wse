@@ -10,6 +10,7 @@ import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.XoredArgumentPair;
 
 /** SRP-6 Client Proof Of Session Key - M1. */
+@SuppressWarnings("checkstyle:parametername")
 public final class SRP6CltSesProof implements DigestArgument {
 
     private final IntermediateDigest proof;

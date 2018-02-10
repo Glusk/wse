@@ -15,6 +15,7 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
 
     private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6CltPubEphVal(
         SRP6Integer N,
         SRP6Integer g,
