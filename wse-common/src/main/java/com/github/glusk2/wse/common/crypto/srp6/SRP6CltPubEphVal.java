@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Client Public Ephemeral Value - A. */
+@SuppressWarnings("checkstyle:membername")
 public final class SRP6CltPubEphVal implements SRP6Integer {
 
     private final SRP6Integer srp6_N;
@@ -11,7 +13,7 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
     private final SRP6Integer srp6_a;
     private final Mapping<BigInteger, SRP6Integer> rule;
 
-    private SRP6Integer A;
+    private SRP6Integer cachedValue;
 
     public SRP6CltPubEphVal(
         SRP6Integer N,
@@ -37,17 +39,17 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (A == null) {
-            A = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return A.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (A == null) {
-            A = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return A.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

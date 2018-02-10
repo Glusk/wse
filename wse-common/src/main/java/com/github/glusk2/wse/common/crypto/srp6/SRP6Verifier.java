@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Verifier - v. */
+@SuppressWarnings("checkstyle:membername")
 public final class SRP6Verifier implements SRP6Integer {
 
     private final SRP6Integer srp6_N;
@@ -11,7 +13,7 @@ public final class SRP6Verifier implements SRP6Integer {
     private final SRP6Integer srp6_x;
     private final Mapping<BigInteger, SRP6Integer> rule;
 
-    private SRP6Integer v;
+    private SRP6Integer cachedValue;
 
     public SRP6Verifier(
         SRP6Integer N,
@@ -37,17 +39,17 @@ public final class SRP6Verifier implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (v == null) {
-            v = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return v.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (v == null) {
-            v = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return v.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

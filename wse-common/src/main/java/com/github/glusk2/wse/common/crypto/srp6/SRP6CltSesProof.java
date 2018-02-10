@@ -9,11 +9,12 @@ import com.github.glusk2.wse.common.crypto.util.hashing.IntermediateDigest;
 import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.XoredArgumentPair;
 
+/** SRP-6 Client Proof Of Session Key - M1. */
 public final class SRP6CltSesProof implements DigestArgument {
 
     private final IntermediateDigest proof;
 
-    private byte[] M1;
+    private byte[] cachedProofBytes;
 
     @SuppressWarnings("checkstyle:parameternumber")
     public SRP6CltSesProof(
@@ -69,9 +70,9 @@ public final class SRP6CltSesProof implements DigestArgument {
 
     @Override
     public byte[] bytes() {
-        if (M1 == null) {
-            M1 = proof.bytes();
+        if (cachedProofBytes == null) {
+            cachedProofBytes = proof.bytes();
         }
-        return M1;
+        return cachedProofBytes;
     }
 }

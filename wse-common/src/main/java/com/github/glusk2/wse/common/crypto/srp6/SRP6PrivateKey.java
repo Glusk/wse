@@ -10,6 +10,7 @@ import com.github.glusk2.wse.common.crypto.util.hashing.IntermediateDigest;
 import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Private Key - x. */
 public final class SRP6PrivateKey implements SRP6Integer {
 
     private final ImmutableMessageDigest imd;
@@ -17,7 +18,7 @@ public final class SRP6PrivateKey implements SRP6Integer {
     private final DigestArgument p;
     private final Mapping<byte[], SRP6Integer> rule;
 
-    private SRP6Integer x;
+    private SRP6Integer cachedValue;
 
     public SRP6PrivateKey(
         ImmutableMessageDigest imd,
@@ -67,17 +68,17 @@ public final class SRP6PrivateKey implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (x == null) {
-            x = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return x.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (x == null) {
-            x = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return x.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

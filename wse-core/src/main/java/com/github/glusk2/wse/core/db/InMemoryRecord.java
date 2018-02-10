@@ -25,6 +25,7 @@ public final class InMemoryRecord implements SRP6Record {
 
     private final SRP6Integer v;
     private final SRP6Integer s;
+    @SuppressWarnings("checkstyle:membername")
     private final SRP6Integer N;
     private final SRP6Integer g;
 

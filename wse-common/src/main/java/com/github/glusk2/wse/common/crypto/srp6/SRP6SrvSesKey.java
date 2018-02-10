@@ -4,7 +4,10 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Server Session Key - S. */
+@SuppressWarnings("checkstyle:membername")
 public final class SRP6SrvSesKey implements SRP6Integer {
+
     private final SRP6Integer srp6_N;
     private final SRP6Integer srp6_A;
     private final SRP6Integer srp6_v;
@@ -12,7 +15,7 @@ public final class SRP6SrvSesKey implements SRP6Integer {
     private final SRP6Integer srp6_u;
     private final Mapping<BigInteger, SRP6Integer> rule;
 
-    private SRP6Integer S;
+    private SRP6Integer cachedValue;
 
     public SRP6SrvSesKey(
         SRP6Integer N,
@@ -44,17 +47,17 @@ public final class SRP6SrvSesKey implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (S == null) {
-            S = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return S.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (S == null) {
-            S = computeInteger();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return S.bigInteger();
+        return cachedValue.bigInteger();
     }
 }
