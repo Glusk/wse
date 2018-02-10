@@ -7,7 +7,7 @@ import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 import com.github.glusk2.wse.common.crypto.util.hashing.IntermediateDigest;
 import com.github.glusk2.wse.common.crypto.util.hashing.StringArgument;
-import com.github.glusk2.wse.common.crypto.util.hashing.XoredArgumentPair;
+import com.github.glusk2.wse.common.crypto.util.hashing.XoredArguments;
 
 /** SRP-6 Client Proof Of Session Key - M1. */
 @SuppressWarnings("checkstyle:parametername")
@@ -46,7 +46,7 @@ public final class SRP6CltSesProof implements DigestArgument {
         this(
             new IntermediateDigest(
                 imd,
-                new XoredArgumentPair(
+                new XoredArguments(
                     new IntermediateDigest(imd, N),
                     new IntermediateDigest(imd, g)
                 ),

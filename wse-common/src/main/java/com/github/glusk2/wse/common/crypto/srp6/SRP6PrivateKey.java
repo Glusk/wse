@@ -14,9 +14,7 @@ import com.github.glusk2.wse.common.util.Mapping;
 @SuppressWarnings("checkstyle:parametername")
 public final class SRP6PrivateKey implements SRP6Integer {
 
-    private final ImmutableMessageDigest imd;
-    private final SRP6Integer s;
-    private final DigestArgument p;
+    private final DigestArgument x;
     private final Mapping<byte[], SRP6Integer> rule;
 
     private SRP6Integer cachedValue;
@@ -56,15 +54,20 @@ public final class SRP6PrivateKey implements SRP6Integer {
         DigestArgument p,
         Mapping<byte[], SRP6Integer> rule
     ) {
-        this.imd = imd;
+        this(new IntermediateDigest(imd, s, p), rule);
+    }
+
+    public SRP6PrivateKey(
+        DigestArgument x,
+        Mapping<byte[], SRP6Integer> rule
+    ) {
+        this.x = x;
         this.rule = rule;
-        this.p = p;
-        this.s = s;
     }
 
     private SRP6Integer computeInteger() {
         // H(salt | H(username | ":" | password)) = H(salt | p)
-        return rule.map(imd.update(s, p).digest());
+        return rule.map(x.bytes());
     }
 
     @Override
