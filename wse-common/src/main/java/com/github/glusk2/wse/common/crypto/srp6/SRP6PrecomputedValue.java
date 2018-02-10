@@ -20,8 +20,8 @@ import com.github.glusk2.wse.common.crypto.util.bytearrays.ZeroPadded;
  */
 public final class SRP6PrecomputedValue implements SRP6Integer {
 
-    private final BigInteger bi;
-    private final ByteArray ba;
+    private final BigInteger bigIntegerValue;
+    private final ByteArray byteArrayValue;
 
     /**
      * A BigInteger extension that allows specific instantiation options.
@@ -31,78 +31,90 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     private static final class BigIntExt extends BigInteger {
         private static final long serialVersionUID = 1L;
 
-        BigIntExt(ByteArray ba, ByteOrder bo) {
+        BigIntExt(ByteArray value, ByteOrder order) {
             this(
                 new ByteArray.BRANCH(
                     ByteOrder.BIG_ENDIAN,
-                    bo,
-                    ba,
-                    new Reversed(ba)
+                    order,
+                    value,
+                    new Reversed(value)
                 )
             );
         }
 
-        BigIntExt(ByteArray ba) {
-            super(1, ba.array());
+        BigIntExt(ByteArray value) {
+            super(1, value.array());
         }
     }
 
-    public SRP6PrecomputedValue(BigInteger bi) {
-        this(bi, ByteOrder.LITTLE_ENDIAN);
+    public SRP6PrecomputedValue(BigInteger value) {
+        this(value, ByteOrder.LITTLE_ENDIAN);
     }
 
-    public SRP6PrecomputedValue(BigInteger bi, ByteOrder bo) {
+    public SRP6PrecomputedValue(BigInteger value, ByteOrder order) {
         this(
-            bi,
+            value,
             new ByteArray.BRANCH(
-                bo,
-                new Lba(bi),
-                new Bba(bi)
+                order,
+                new Lba(value),
+                new Bba(value)
             )
         );
     }
 
-    public SRP6PrecomputedValue(BigInteger bi, int size) {
-        this(bi, size, ByteOrder.LITTLE_ENDIAN);
+    public SRP6PrecomputedValue(BigInteger value, int byteArrayLength) {
+        this(value, byteArrayLength, ByteOrder.LITTLE_ENDIAN);
     }
 
-    public SRP6PrecomputedValue(BigInteger bi, int size, ByteOrder bo) {
+    public SRP6PrecomputedValue(
+        BigInteger value,
+        int byteArrayLength,
+        ByteOrder order
+    ) {
         this(
-            bi,
+            value,
             new ByteArray.BRANCH(
-                bo,
-                new Lba(bi, size),
-                new Bba(bi, size)
+                order,
+                new Lba(value, byteArrayLength),
+                new Bba(value, byteArrayLength)
             )
         );
     }
 
 
-    public SRP6PrecomputedValue(String hex, ByteOrder order) {
-        this(DatatypeConverter.parseHexBinary(hex), order);
+    public SRP6PrecomputedValue(String hexValue, ByteOrder order) {
+        this(DatatypeConverter.parseHexBinary(hexValue), order);
     }
 
-    public SRP6PrecomputedValue(byte[] arr, ByteOrder order) {
-        this(arr, arr.length, order);
+    public SRP6PrecomputedValue(byte[] value, ByteOrder order) {
+        this(value, value.length, order);
     }
 
-    public SRP6PrecomputedValue(byte[] arr, int size, ByteOrder bo) {
-        this(new ByteArray.WRAPPER(arr), size, bo);
+    public SRP6PrecomputedValue(
+        byte[] value,
+        int byteArrayLength,
+        ByteOrder order
+    ) {
+        this(new ByteArray.WRAPPER(value), byteArrayLength, order);
     }
 
-    public SRP6PrecomputedValue(ByteArray arr, int size, ByteOrder bo) {
+    public SRP6PrecomputedValue(
+        ByteArray value,
+        int byteArrayLength,
+        ByteOrder order
+    ) {
         this(
-            new BigIntExt(arr, bo),
+            new BigIntExt(value, order),
             new ByteArray.BRANCH(
-                bo,
+                order,
                 new ZeroPadded(
-                    arr,
-                    size
+                    value,
+                    byteArrayLength
                 ),
                 new Reversed(
                     new ZeroPadded(
-                        new Reversed(arr),
-                        size
+                        new Reversed(value),
+                        byteArrayLength
                     )
                 )
             )
@@ -110,18 +122,21 @@ public final class SRP6PrecomputedValue implements SRP6Integer {
     }
 
 
-    private SRP6PrecomputedValue(BigInteger bi, ByteArray ba) {
-        this.bi = bi;
-        this.ba = ba;
+    public SRP6PrecomputedValue(
+        BigInteger bigIntegerValue,
+        ByteArray byteArrayValue
+    ) {
+        this.bigIntegerValue = bigIntegerValue;
+        this.byteArrayValue = byteArrayValue;
     }
 
     @Override
     public byte[] bytes() {
-        return ba.array();
+        return byteArrayValue.array();
     }
 
     @Override
     public BigInteger bigInteger() {
-       return bi;
+       return bigIntegerValue;
     }
 }
