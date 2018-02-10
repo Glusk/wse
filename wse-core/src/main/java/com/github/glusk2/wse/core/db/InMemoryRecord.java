@@ -17,6 +17,7 @@ import com.github.glusk2.wse.common.crypto.srp6.SRP6Verifier;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImdSimpleCopy;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 
+@SuppressWarnings("checkstyle:parametername")
 public final class InMemoryRecord implements SRP6Record {
 
     private static final int HEX_RADIX = 16;
@@ -25,6 +26,7 @@ public final class InMemoryRecord implements SRP6Record {
 
     private final SRP6Integer v;
     private final SRP6Integer s;
+    @SuppressWarnings("checkstyle:membername")
     private final SRP6Integer N;
     private final SRP6Integer g;
 

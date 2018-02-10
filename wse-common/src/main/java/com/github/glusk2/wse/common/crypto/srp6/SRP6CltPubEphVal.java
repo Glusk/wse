@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Client Public Ephemeral Value - A. */
+@SuppressWarnings("checkstyle:membername")
 public final class SRP6CltPubEphVal implements SRP6Integer {
 
     private final SRP6Integer srp6_N;
@@ -11,8 +13,9 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
     private final SRP6Integer srp6_a;
     private final Mapping<BigInteger, SRP6Integer> rule;
 
-    private SRP6Integer A;
+    private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6CltPubEphVal(
         SRP6Integer N,
         SRP6Integer g,
@@ -25,7 +28,8 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
         this.rule = rule;
     }
 
-    private SRP6Integer compute_A() {
+    @SuppressWarnings("checkstyle:localvariablename")
+    private SRP6Integer computeInteger() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger g = srp6_g.bigInteger();
         BigInteger a = srp6_a.bigInteger();
@@ -36,17 +40,17 @@ public final class SRP6CltPubEphVal implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (A == null) {
-            A = compute_A();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return A.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (A == null) {
-            A = compute_A();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return A.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

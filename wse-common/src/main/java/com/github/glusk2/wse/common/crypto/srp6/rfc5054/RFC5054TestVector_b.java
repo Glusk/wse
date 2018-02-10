@@ -6,9 +6,10 @@ import java.nio.ByteOrder;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6PrecomputedValue;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 
+@SuppressWarnings("checkstyle:typename")
 public final class RFC5054TestVector_b implements SRP6Integer {
 
-    private static final SRP6Integer b =
+    private static final SRP6Integer VALUE =
         new SRP6PrecomputedValue(
             new BigInteger(
                 ("E487CB59 D31AC550 471E81F0 0F6928E0 1DDA08E9 74A004F4" +
@@ -20,11 +21,11 @@ public final class RFC5054TestVector_b implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        return b.bytes();
+        return VALUE.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        return b.bigInteger();
+        return VALUE.bigInteger();
     }
 }

@@ -23,6 +23,7 @@ public final class ServerRealmList implements Response {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:avoidinlineconditionals")
     public ByteBuffer response() throws Exception {
         ByteBuffer realmsBuf =
             ByteBuffer
@@ -36,7 +37,7 @@ public final class ServerRealmList implements Response {
                     .order(ByteOrder.LITTLE_ENDIAN);
 
             realmBuf.put(realm.type());
-            realmBuf.put(realm.isLocked() ? (byte) 1 : (byte) 0);
+            realmBuf.put((byte) (realm.isLocked() ? 1 : 0));
             realmBuf.put(realm.flags());
             realmBuf.put(realm.name().bytes());
             realmBuf.put(realm.address().bytes());

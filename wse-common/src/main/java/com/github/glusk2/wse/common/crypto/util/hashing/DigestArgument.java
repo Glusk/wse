@@ -4,17 +4,17 @@ public interface DigestArgument {
 
     byte[] bytes();
 
-    final class RAW_BYTES implements DigestArgument {
+    final class BYTES implements DigestArgument {
 
-        private final byte[] bArr;
+        private final byte[] bytes;
 
-        public RAW_BYTES(byte[] bArr) {
-            this.bArr = bArr;
+        public BYTES(byte... bytes) {
+            this.bytes = bytes;
         }
 
         @Override
         public byte[] bytes() {
-            return bArr;
+            return bytes;
         }
     }
 }

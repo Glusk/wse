@@ -3,47 +3,53 @@ package com.github.glusk2.wse.common.crypto.srp6;
 import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
+import com.github.glusk2.wse.common.crypto.util.hashing.IntermediateDigest;
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Scrambling Parameter - u. */
 public final class SRP6ScrPar implements SRP6Integer {
 
-    private final ImmutableMessageDigest imd;
+    private IntermediateDigest u;
     private final Mapping<byte[], SRP6Integer> rule;
-    private final SRP6Integer A;
-    private final SRP6Integer B;
 
-    private SRP6Integer u;
+    private SRP6Integer cachedValue;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6ScrPar(
         ImmutableMessageDigest imd,
         SRP6Integer A,
         SRP6Integer B,
         Mapping<byte[], SRP6Integer> rule
     ) {
-        this.imd = imd;
-        this.A = A;
-        this.B = B;
+        this(new IntermediateDigest(imd, A, B), rule);
+    }
+
+    public SRP6ScrPar(
+        IntermediateDigest u,
+        Mapping<byte[], SRP6Integer> rule
+    ) {
+        this.u = u;
         this.rule = rule;
     }
 
-    private SRP6Integer compute_u() {
+    private SRP6Integer computeInteger() {
         // u = H(A, B)
-        return rule.map(imd.update(A, B).digest());
+        return rule.map(u.bytes());
     }
 
     @Override
     public byte[] bytes() {
-        if (u == null) {
-            u = compute_u();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return u.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (u == null) {
-            u = compute_u();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return u.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

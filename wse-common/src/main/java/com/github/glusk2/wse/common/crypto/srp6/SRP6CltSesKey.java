@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
+/** SRP-6 Client Session Key - S. */
+@SuppressWarnings({"checkstyle:membername", "checkstyle:parametername"})
 public final class SRP6CltSesKey implements SRP6Integer {
 
     private final SRP6Integer srp6_N;
@@ -15,7 +17,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
     private final SRP6Integer srp6_B;
     private final Mapping<BigInteger, SRP6Integer> rule;
 
-    private SRP6Integer S;
+    private SRP6Integer cachedValue;
 
     public SRP6CltSesKey(
         SRP6Integer N,
@@ -38,6 +40,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
         );
     }
 
+    @SuppressWarnings("checkstyle:parameternumber")
     public SRP6CltSesKey(
         SRP6Integer N,
         SRP6Integer g,
@@ -58,7 +61,8 @@ public final class SRP6CltSesKey implements SRP6Integer {
         this.rule = rule;
     }
 
-    private SRP6Integer compute_S() {
+    @SuppressWarnings("checkstyle:localvariablename")
+    private SRP6Integer computeInteger() {
         BigInteger N = srp6_N.bigInteger();
         BigInteger g = srp6_g.bigInteger();
         BigInteger k = srp6_k.bigInteger();
@@ -75,17 +79,17 @@ public final class SRP6CltSesKey implements SRP6Integer {
 
     @Override
     public byte[] bytes() {
-        if (S == null) {
-            S = compute_S();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return S.bytes();
+        return cachedValue.bytes();
     }
 
     @Override
     public BigInteger bigInteger() {
-        if (S == null) {
-            S = compute_S();
+        if (cachedValue == null) {
+            cachedValue = computeInteger();
         }
-        return S.bigInteger();
+        return cachedValue.bigInteger();
     }
 }

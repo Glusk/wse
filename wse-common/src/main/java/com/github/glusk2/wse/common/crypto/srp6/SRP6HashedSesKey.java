@@ -3,13 +3,16 @@ package com.github.glusk2.wse.common.crypto.srp6;
 import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 
+/** SRP-6 Hashed Session Key - K. */
 public final class SRP6HashedSesKey implements DigestArgument {
 
     private final ImmutableMessageDigest imd;
+    @SuppressWarnings("checkstyle:membername")
     private final SRP6Integer S;
 
-    private DigestArgument K;
+    private DigestArgument cachedKey;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6HashedSesKey(
         ImmutableMessageDigest imd,
         SRP6Integer S
@@ -23,7 +26,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
      * <a href="http://tools.ietf.org/rfc/rfc2945.txt">RFC2945</a>
      * (section 3.1. Interleaved SHA).
      */
-    private DigestArgument compute_K() {
+    private DigestArgument computeKey() {
         byte[] t = S.bytes();
         int off = t.length % 2;
         int halfSize = (t.length - off) / 2;
@@ -42,14 +45,14 @@ public final class SRP6HashedSesKey implements DigestArgument {
             res[2 * i    ] = e[i];
             res[2 * i + 1] = o[i];
         }
-        return new DigestArgument.RAW_BYTES(res);
+        return new DigestArgument.BYTES(res);
     }
 
     @Override
     public byte[] bytes() {
-        if (K == null) {
-            K = compute_K();
+        if (cachedKey == null) {
+            cachedKey = computeKey();
         }
-        return K.bytes();
+        return cachedKey.bytes();
     }
 }

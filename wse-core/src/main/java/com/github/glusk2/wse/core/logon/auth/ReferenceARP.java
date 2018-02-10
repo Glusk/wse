@@ -46,22 +46,24 @@ public final class ReferenceARP implements AuthReconnectProof {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public DigestArgument clientSalt() throws IOException {
         byte[] R1 = new byte[SALT_LENGTH];
         ByteBuffer buf =
             (ByteBuffer) clientReconnectProof.buffer().position(1);
         buf.get(R1);
-        return new DigestArgument.RAW_BYTES(R1);
+        return new DigestArgument.BYTES(R1);
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public DigestArgument reconnectProof() throws IOException {
         byte[] R2 = new byte[SHA1_LENGTH];
         ByteBuffer buf = (ByteBuffer) clientReconnectProof
             .buffer()
             .position(1 + SALT_LENGTH);
         buf.get(R2);
-        return new DigestArgument.RAW_BYTES(R2);
+        return new DigestArgument.BYTES(R2);
     }
 
     @Override
@@ -80,7 +82,7 @@ public final class ReferenceARP implements AuthReconnectProof {
     @Override
     public DigestArgument sessionKey() throws SQLException, IOException {
         return
-            new DigestArgument.RAW_BYTES(
+            new DigestArgument.BYTES(
                 sessions.map(
                     challenge.identity()
                 ).key()

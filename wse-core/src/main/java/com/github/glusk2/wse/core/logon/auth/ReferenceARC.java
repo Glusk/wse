@@ -29,7 +29,7 @@ public final class ReferenceARC implements AuthReconnectChallenge {
     public ReferenceARC(IncomingPacket clientChallenge) {
         this(
             clientChallenge,
-            new DigestArgument.RAW_BYTES(
+            new DigestArgument.BYTES(
                 new SecureRandom().generateSeed(SALT_LENGTH)
             )
         );
@@ -45,6 +45,7 @@ public final class ReferenceARC implements AuthReconnectChallenge {
 
     /** {@inheritDoc} */
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public String identity() throws IOException {
         ByteBuffer buf = (ByteBuffer) clientChallenge
             .buffer()

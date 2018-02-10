@@ -64,6 +64,7 @@ public final class ReferenceALC implements AuthLogonChallenge {
 
     /** {@inheritDoc} */
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public String identity() throws IOException {
         ByteBuffer buf = (ByteBuffer) cc
             .buffer()
@@ -97,6 +98,7 @@ public final class ReferenceALC implements AuthLogonChallenge {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:localvariablename")
     public ByteBuffer response() throws SQLException, IOException {
         byte[] B = srvPubEphVal().bytes();
         byte[] g = record().generator().bytes();

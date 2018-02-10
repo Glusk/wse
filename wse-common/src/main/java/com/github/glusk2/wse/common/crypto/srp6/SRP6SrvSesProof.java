@@ -4,12 +4,14 @@ import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 import com.github.glusk2.wse.common.crypto.util.hashing.IntermediateDigest;
 
+/** SRP-6 Server Session Proof - M2. */
 public final class SRP6SrvSesProof implements DigestArgument {
 
     private final IntermediateDigest proof;
 
-    private byte[] M2;
+    private byte[] cachedProofBytes;
 
+    @SuppressWarnings("checkstyle:parametername")
     public SRP6SrvSesProof(
         ImmutableMessageDigest imd,
         SRP6Integer A,
@@ -25,9 +27,9 @@ public final class SRP6SrvSesProof implements DigestArgument {
 
     @Override
     public byte[] bytes() {
-        if (M2 == null) {
-            M2 = proof.bytes();
+        if (cachedProofBytes == null) {
+            cachedProofBytes = proof.bytes();
         }
-        return M2;
+        return cachedProofBytes;
     }
 }
