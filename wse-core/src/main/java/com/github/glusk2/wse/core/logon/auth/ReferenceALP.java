@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6CltSesProof;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6FromBigIntRule;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6FromRawRule;
-import com.github.glusk2.wse.common.crypto.srp6.SRP6HashedSesKey;
+import com.github.glusk2.wse.common.crypto.srp6.SRP6SessionKey;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6ScrPar;
-import com.github.glusk2.wse.common.crypto.srp6.SRP6SrvSesKey;
+import com.github.glusk2.wse.common.crypto.srp6.SRP6ServerSecret;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6SrvSesProof;
 import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
@@ -127,9 +127,9 @@ public final class ReferenceALP implements AuthLogonProof {
     @Override
     public DigestArgument sessionKey() throws SQLException, IOException {
         return
-            new SRP6HashedSesKey(
+            new SRP6SessionKey(
                 imd,
-                new SRP6SrvSesKey(
+                new SRP6ServerSecret(
                     challenge.record().modulus(),
                     cltPubEphVal(),
                     challenge.record().verifier(),
