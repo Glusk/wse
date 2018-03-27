@@ -17,7 +17,7 @@ import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_u;
 import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_x;
 import com.github.glusk2.wse.common.util.Mapping;
 
-public class SRP6CltSesKeyTest {    
+public class SRP6ClientSecretTest {
     @Test
     public void testRFC5054() {
         final Mapping<BigInteger, SRP6Integer> rule =
@@ -29,7 +29,7 @@ public class SRP6CltSesKeyTest {
         assertTrue(
             "Computed value doesn't match the test vector.",
             new RFC5054TestVector_S().string().equals(
-                new SRP6CltSesKey(
+                new SRP6ClientSecret(
                     new RFC5054TestVector_N(),
                     new RFC5054TestVector_g(),
                     new RFC5054TestVector_k(),

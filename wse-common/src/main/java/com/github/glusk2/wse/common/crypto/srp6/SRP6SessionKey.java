@@ -3,8 +3,8 @@ package com.github.glusk2.wse.common.crypto.srp6;
 import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 
-/** SRP-6 Hashed Session Key - K. */
-public final class SRP6HashedSesKey implements DigestArgument {
+/** SRP-6 Session Key - K. */
+public final class SRP6SessionKey implements DigestArgument {
 
     private final ImmutableMessageDigest imd;
     @SuppressWarnings("checkstyle:membername")
@@ -13,7 +13,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
     private byte[] cachedKey;
 
     @SuppressWarnings("checkstyle:parametername")
-    public SRP6HashedSesKey(
+    public SRP6SessionKey(
         ImmutableMessageDigest imd,
         SRP6Integer S
     ) {

@@ -68,17 +68,17 @@ public class SRP6IT {
         SRP6Integer A = new SRP6CltPubEphVal(N, g, a, intPadRule);
         SRP6Integer u = new SRP6ScrPar(imd, A, B, shaPadRule);
         DigestArgument client_K =
-            new SRP6HashedSesKey(
+            new SRP6SessionKey(
                 imd,
-                new SRP6CltSesKey(N, g, x, u, a, B, intPadRule)
+                new SRP6ClientSecret(N, g, x, u, a, B, intPadRule)
             );
         //---------------------------------------------------------------------
         
         // Now Bob computes the session key:
         DigestArgument server_K =
-            new SRP6HashedSesKey(
+            new SRP6SessionKey(
                 imd,
-                new SRP6SrvSesKey(N, A, v, u, b, intPadRule)
+                new SRP6ServerSecret(N, A, v, u, b, intPadRule)
             );
 
         Assert.assertArrayEquals(

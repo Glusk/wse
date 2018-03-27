@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 import com.github.glusk2.wse.common.util.Mapping;
 
-/** SRP-6 Client Session Key - S. */
+/** SRP-6 Client Secret - S. */
 @SuppressWarnings({"checkstyle:membername", "checkstyle:parametername"})
-public final class SRP6CltSesKey implements SRP6Integer {
+public final class SRP6ClientSecret implements SRP6Integer {
 
     private final SRP6Integer srp6_N;
     private final SRP6Integer srp6_g;
@@ -19,7 +19,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
 
     private SRP6Integer cachedValue;
 
-    public SRP6CltSesKey(
+    public SRP6ClientSecret(
         SRP6Integer N,
         SRP6Integer g,
         SRP6Integer x,
@@ -41,7 +41,7 @@ public final class SRP6CltSesKey implements SRP6Integer {
     }
 
     @SuppressWarnings("checkstyle:parameternumber")
-    public SRP6CltSesKey(
+    public SRP6ClientSecret(
         SRP6Integer N,
         SRP6Integer g,
         SRP6Integer k,
