@@ -10,7 +10,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
     @SuppressWarnings("checkstyle:membername")
     private final SRP6Integer S;
 
-    private DigestArgument cachedKey;
+    private byte[] cachedKey;
 
     @SuppressWarnings("checkstyle:parametername")
     public SRP6HashedSesKey(
@@ -26,7 +26,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
      * <a href="http://tools.ietf.org/rfc/rfc2945.txt">RFC2945</a>
      * (section 3.1. Interleaved SHA).
      */
-    private DigestArgument computeKey() {
+    private byte[] computeKey() {
         byte[] t = S.bytes();
         int off = t.length % 2;
         int halfSize = (t.length - off) / 2;
@@ -45,7 +45,7 @@ public final class SRP6HashedSesKey implements DigestArgument {
             res[2 * i    ] = e[i];
             res[2 * i + 1] = o[i];
         }
-        return new DigestArgument.BYTES(res);
+        return res;
     }
 
     @Override
@@ -53,6 +53,6 @@ public final class SRP6HashedSesKey implements DigestArgument {
         if (cachedKey == null) {
             cachedKey = computeKey();
         }
-        return cachedKey.bytes();
+        return cachedKey;
     }
 }
