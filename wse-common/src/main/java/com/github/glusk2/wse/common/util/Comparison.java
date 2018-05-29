@@ -28,7 +28,7 @@ public final class Comparison<T extends Digitizable> {
         this.rt = right;
     }
 
-    int value() {
+    int value() throws Exception {
         final byte[] left = this.lt.digits();
         final byte[] right = this.rt.digits();
         int result = 0;

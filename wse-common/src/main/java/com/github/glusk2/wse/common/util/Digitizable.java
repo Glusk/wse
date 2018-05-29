@@ -20,6 +20,6 @@ package com.github.glusk2.wse.common.util;
  * SOFTWARE.
  */
 public interface Digitizable {
-    byte[] digits();
+    byte[] digits() throws Exception;
 }
 
