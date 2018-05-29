@@ -15,9 +15,23 @@ git clone https://github.com/Glusk2/wse.git
 cd wse
 mvn clean install
 mysql -u your_database_username -p < wse-core/sql/initial_database_create_script.sql
-java -DconfigFilePath="path_to_your_configuration.properties_file*" -classpath wse-core/target/wse-core-0.0.1-jar-with-dependencies.jar com.github.glusk2.wse.core.logon.LogonServer
+java -classpath wse-core/target/wse-core-0.0.1-jar-with-dependencies.jar com.github.glusk2.wse.core.logon.LogonServer
 ```
-<sub>* Check out [configuration.properties.example](/wse-core/src/main/resources/configuration.properties.example) for reference.</sub>
+You can configure the server using the following properties (for example:`java -DwseConfig=path/to/config`):
+- hikariConfig
+- wseConfig
+
+Excamples of both configuration files can be found here: [*.properties.example](/wse-core/src/main/resources/)
+The easiest way to run the program is to:
+- copy the example configuration files
+- rename them to `hkari.properties` and `wse.properties`
+- place them in [/wse-core/src/main/resources/](/wse-core/src/main/resources/)
+
+Then just run:
+``` shell
+mvn clean install
+java -classpath wse-core/target/wse-core-0.0.1-jar-with-dependencies.jar com.github.glusk2.wse.core.logon.LogonServer
+```
 
 ---
 
