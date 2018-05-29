@@ -1,5 +1,3 @@
-package com.github.glusk2.wse.common.util;
-
 /**
  * Copyright (c) 2017 Yegor Bugayenko
  *
@@ -19,6 +17,8 @@ package com.github.glusk2.wse.common.util;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package com.github.glusk2.wse.common.util;
+
 public interface Digitizable {
     byte[] digits() throws Exception;
 }
