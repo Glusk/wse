@@ -1,13 +1,16 @@
 package com.github.glusk2.wse.core.logon;
 
 import java.nio.channels.SocketChannel;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import com.github.glusk2.wse.common.crypto.srp6.SRP6Record;
+import com.github.glusk2.wse.common.crypto.util.hashing.DigestArgument;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 import com.github.glusk2.wse.common.net.SocketChannelIncomingPacket;
 import com.github.glusk2.wse.common.util.Mapping;
+import com.github.glusk2.wse.core.db.FakeRecord;
 import com.github.glusk2.wse.core.db.MySqlRealms;
 import com.github.glusk2.wse.core.db.MySqlRecord;
 import com.github.glusk2.wse.core.db.MySqlSession;
@@ -30,14 +33,26 @@ public final class AuthSession implements Runnable {
     public AuthSession(
         SocketChannel sc,
         DataSource db,
-        ImmutableMessageDigest imd
+        ImmutableMessageDigest imd,
+        Properties wseProps
     ) {
         this(
             sc,
             imd,
             new Mapping<String, SRP6Record>() {
                 public SRP6Record map(final String identity) {
-                    return new MySqlRecord(db, identity);
+                    return
+                        new MySqlRecord(
+                            db,
+                            identity,
+                            new FakeRecord(
+                                imd,
+                                new DigestArgument.BYTES(
+                                    wseProps.getProperty("fakeRecordSecret")
+                                ),
+                                identity
+                            )
+                        );
                 }
             },
             new Mapping<String, Session>() {
