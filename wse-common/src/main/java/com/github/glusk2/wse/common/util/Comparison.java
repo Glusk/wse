@@ -23,12 +23,12 @@ public final class Comparison<T extends Digitizable> {
     private final T rt;
     private final T lt;
 
-    Comparison(T left, T right) {
+    public Comparison(T left, T right) {
         this.lt = left;
         this.rt = right;
     }
 
-    int value() throws Exception {
+    public int value() throws Exception {
         final byte[] left = this.lt.digits();
         final byte[] right = this.rt.digits();
         int result = 0;
