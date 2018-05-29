@@ -1,7 +1,6 @@
 package com.github.glusk2.wse.core.db;
 
 import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,14 +16,15 @@ import com.jcabi.jdbc.Outcome;
 public final class MySqlRecord implements SRP6Record {
 
     private static final int HEX_RADIX = 16;
-    private static final int INTEGER_PAD_SIZE = 32;
 
     private final DataSource db;
     private final String user;
+    private final SRP6Record fakeRecord;
 
-    public MySqlRecord(DataSource ds, String username) {
+    public MySqlRecord(DataSource ds, String username, SRP6Record fake) {
         db = ds;
         user = username;
+        fakeRecord = fake;
     }
 
     @Override
@@ -44,14 +44,7 @@ public final class MySqlRecord implements SRP6Record {
                                 new BigInteger(rs.getString(1), HEX_RADIX)
                             );
                     }
-                    return
-                        new SRP6PrecomputedValue(
-                            new BigInteger(
-                                1,
-                                new SecureRandom()
-                                    .generateSeed(INTEGER_PAD_SIZE)
-                            )
-                        );
+                    return fakeRecord.verifier();
                 }
             });
     }
@@ -73,14 +66,7 @@ public final class MySqlRecord implements SRP6Record {
                                 new BigInteger(rs.getString(1), HEX_RADIX)
                             );
                     }
-                    return
-                        new SRP6PrecomputedValue(
-                            new BigInteger(
-                                1,
-                                new SecureRandom()
-                                    .generateSeed(INTEGER_PAD_SIZE)
-                            )
-                        );
+                    return fakeRecord.salt();
                 }
             });
     }
@@ -102,15 +88,7 @@ public final class MySqlRecord implements SRP6Record {
                                 new BigInteger(rs.getString(1), HEX_RADIX)
                             );
                     }
-                    return
-                        new SRP6PrecomputedValue(
-                            new BigInteger(
-                                ("894B645E 89E1535B BDAD5B8B 29065053" +
-                                 "0801B18E BFBF5E8F AB3C8287 2A3E9BB7"
-                                ).replaceAll(" ", ""),
-                                HEX_RADIX
-                            )
-                        );
+                    return fakeRecord.modulus();
                 }
             });
     }
@@ -132,7 +110,7 @@ public final class MySqlRecord implements SRP6Record {
                                 new BigInteger(rs.getString(1), HEX_RADIX)
                             );
                     }
-                    return new SRP6PrecomputedValue(new BigInteger("7"));
+                    return fakeRecord.generator();
                 }
             });
     }
