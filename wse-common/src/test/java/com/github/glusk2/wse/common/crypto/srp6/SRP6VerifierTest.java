@@ -7,10 +7,10 @@ import java.nio.ByteOrder;
 
 import org.junit.Test;
 
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_N;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_g;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_v;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_x;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorUcN;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcG;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcV;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcX;
 import com.github.glusk2.wse.common.util.Mapping;
 
 public class SRP6VerifierTest {
@@ -18,16 +18,16 @@ public class SRP6VerifierTest {
     public void testRFC5054() {
         final Mapping<BigInteger, SRP6Integer> rule = 
             new SRP6FromBigIntRule(
-                new RFC5054TestVector_N().bytes().length,
+                new TestVectorUcN().bytes().length,
                 ByteOrder.BIG_ENDIAN
             );
 
         assertTrue(
-            new RFC5054TestVector_v().string().equals(
+            new TestVectorLcV().string().equals(
                 new SRP6Verifier(
-                    new RFC5054TestVector_N(),
-                    new RFC5054TestVector_g(),
-                    new RFC5054TestVector_x(),
+                    new TestVectorUcN(),
+                    new TestVectorLcG(),
+                    new TestVectorLcX(),
                     rule
                 ).string()
             )

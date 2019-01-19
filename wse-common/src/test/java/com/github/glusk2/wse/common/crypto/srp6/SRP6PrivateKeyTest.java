@@ -9,8 +9,8 @@ import java.security.NoSuchAlgorithmException;
 
 import org.junit.Test;
 
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_s;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_x;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcS;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcX;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImdSimpleCopy;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 import com.github.glusk2.wse.common.util.Mapping;
@@ -29,10 +29,10 @@ public class SRP6PrivateKeyTest {
         
         assertTrue(
             "Computed value doesn't match the test vector.",
-            new RFC5054TestVector_x().string().equals(
+            new TestVectorLcX().string().equals(
                 new SRP6PrivateKey(
                     imd,
-                    new RFC5054TestVector_s(),
+                    new TestVectorLcS(),
                     "alice",
                     "password123",
                     rule

@@ -9,9 +9,9 @@ import java.security.NoSuchAlgorithmException;
 
 import org.junit.Test;
 
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_A;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_B;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_u;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorUcA;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorUcB;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcU;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImdSimpleCopy;
 import com.github.glusk2.wse.common.crypto.util.hashing.ImmutableMessageDigest;
 import com.github.glusk2.wse.common.util.Mapping;
@@ -30,11 +30,11 @@ public class SRP6ScrParTest {
         
         assertTrue(
             "Computed value doesn't match the test vector.",
-            new RFC5054TestVector_u().string().equals(
+            new TestVectorLcU().string().equals(
                 new SRP6ScrPar(
                     imd,
-                    new RFC5054TestVector_A(),
-                    new RFC5054TestVector_B(),
+                    new TestVectorUcA(),
+                    new TestVectorUcB(),
                     rule
                 ).string()
             )
