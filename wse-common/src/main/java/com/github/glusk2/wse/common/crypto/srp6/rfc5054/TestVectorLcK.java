@@ -6,18 +6,13 @@ import java.nio.ByteOrder;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6PrecomputedValue;
 import com.github.glusk2.wse.common.crypto.srp6.SRP6Integer;
 
-@SuppressWarnings("checkstyle:typename")
-public final class RFC5054TestVector_v implements SRP6Integer {
+public final class TestVectorLcK implements SRP6Integer {
 
     private static final SRP6Integer VALUE =
         new SRP6PrecomputedValue(
             new BigInteger(
-                ("7E273DE8 696FFC4F 4E337D05 B4B375BE B0DDE156 9E8FA00A" +
-                 "9886D812 9BADA1F1 822223CA 1A605B53 0E379BA4 729FDC59" +
-                 "F105B478 7E5186F5 C671085A 1447B52A 48CF1970 B4FB6F84" +
-                 "00BBF4CE BFBB1681 52E08AB5 EA53D15C 1AFF87B2 B9DA6E04" +
-                 "E058AD51 CC72BFC9 033B564E 26480D78 E955A5E2 9E7AB245" +
-                 "DB2BE315 E2099AFB").replace(" ", ""),
+                "7556AA04 5AEF2CDD 07ABAF0F 665C3E81 8913186F"
+                .replace(" ", ""),
                 16
             ),
             ByteOrder.BIG_ENDIAN

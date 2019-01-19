@@ -7,10 +7,10 @@ import java.nio.ByteOrder;
 
 import org.junit.Test;
 
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_A;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_N;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_a;
-import com.github.glusk2.wse.common.crypto.srp6.rfc5054.RFC5054TestVector_g;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorUcA;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorUcN;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcA;
+import com.github.glusk2.wse.common.crypto.srp6.rfc5054.TestVectorLcG;
 import com.github.glusk2.wse.common.util.Mapping;
 
 public class SRP6CltPubEphlValTest {
@@ -18,17 +18,17 @@ public class SRP6CltPubEphlValTest {
     public void testRFC5054() {
         final Mapping<BigInteger, SRP6Integer> rule = 
             new SRP6FromBigIntRule(
-                new RFC5054TestVector_N().bytes().length,
+                new TestVectorUcN().bytes().length,
                 ByteOrder.BIG_ENDIAN
             );
         
         assertTrue(
             "Computed value doesn't match the test vector.",
-            new RFC5054TestVector_A().string().equals(
+            new TestVectorUcA().string().equals(
                 new SRP6CltPubEphVal(
-                    new RFC5054TestVector_N(),
-                    new RFC5054TestVector_g(),
-                    new RFC5054TestVector_a(),
+                    new TestVectorUcN(),
+                    new TestVectorLcG(),
+                    new TestVectorLcA(),
                     rule
                 ).string()
             )
